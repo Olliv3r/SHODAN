@@ -19,11 +19,9 @@ from cor3.banner import banner
 def main():
     banner()
     print ("""
-
-	\t1 - Add-Key
-	\t2 - Search
-	\t3 - Exit
-        \t4 - Sobre
+-----------------------------------------------
+| 1->ADD-KEY | 2->SEARCH | 3->EXIT | 4->SOBRE |
+-----------------------------------------------
         """)
 
 def msg_search():
@@ -43,7 +41,7 @@ sobre = """\nTraduzido de inglês-O Shodan é um mecanismo de busca que permite 
 try:
     def main_program():
         main()
-        op = int(input('Shodan->> '))
+        op = int(input('First-stage->> '))
         if op == 1:
             if(os.path.exists('.Key/key.txt') == True):
                 print('Chave existente !')
@@ -54,6 +52,7 @@ try:
                 file_key = open('.Key/key.txt','x+t')
                 file_key.write('{}'.format(add_key))
                 file_key.close()
+                os.system("python3 main.py")
             
         elif op == 2:
             if(os.path.exists('.Key/key.txt') == True):
