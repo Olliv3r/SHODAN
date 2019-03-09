@@ -40,25 +40,39 @@ sobre = """\nTraduzido de inglês-O Shodan é um mecanismo de busca que permite 
 
 try:
     def main_program():
+
         main()
         op = int(input('First-stage->> '))
         if op == 1:
-            if(os.path.exists('.Key/key.txt') == True):
+            if(os.path.exists('/data/data/com.termux/files/home/.shodan/api_key') == True):
                 print('Chave existente !')
                 time.sleep(1)
                 os.system('python3 main.py')
-            elif(os.path.exists('.Key/key.txt') == False):
-                add_key = input('Add-Key->> ')
-                file_key = open('.Key/key.txt','x+t')
-                file_key.write('{}'.format(add_key))
-                file_key.close()
-                os.system("python3 main.py")
-            
+            elif(os.path.exists('/data/data/com.termux/files/home/.shodan/api_key') == False):
+                print('Chave não existe !')
+                time.sleep(0.5)
+                subprocess.run('clear')
+                print("\033[01;93mCole aqui a chave da sua conta\033[0m")
+                add_key = input('\033[01;96mfirst-stage-Add-Key->> \033[0m')
+                try:
+                    os.system('shodan init {}'.format(add_key))
+                    if(os.path.exists('/data/data/com.termux/files/home/.shodan/api_key') == True):
+
+                        file_key_open = open('/data/data/com.termux/files/home/.shodan/api_key','r')
+                        
+                        file_file_key = open('/data/data/com.termux/files/home/SHODAN/cor3/api_key','w')
+
+                        file_open = file_key_open.read()
+                        file_file_key.write('{}'.format(file_open))
+                        file_file_key.close()
+                        os.system("python3 main.py")
+                except shodan.APIError as erro:
+                    print("Erro ! {}".format(erro))
         elif op == 2:
-            if(os.path.exists('.Key/key.txt') == True):
+            if(os.path.exists('/data/data/com.termux/files/home/.shodan/api_key') == True):
                 api = ""
 
-                file_addon = open('.Key/key.txt','r')
+                file_addon = open('/data/data/com.termux/files/home/.shodan/api_key','r')
                 api = shodan.Shodan(file_addon)
 
                 # buscar internet das coisas expecificas
@@ -74,7 +88,7 @@ try:
                     for result in resultado['matches']:
                         print('-'*30)
                         print ('\033[01;91mIP: \033[01;94m {}\033[0m'.format(result['ip_str']))
-                        print ('\033[91mBanner: \033[01;94m{}\033[0m'.format(result['data']))
+                        #print ('\033[91mBanner: \033[01;94m{}\033[0m'.format(result['data']))
                         print ('\033[01;91mPort: \033[01;94m{}\033[0m'.format(result['port']))
                         print ('\033[01;91mOrganização: \033[01;94m{}\033[0m'.format(result['org']))
                         print ('\033[01;91mSistema Operacional: \033[01;94m{}\033[0m'.format (result['os']))
@@ -82,7 +96,7 @@ try:
 
                 except shodan.APIError as e:
                     print ("Error [!] {}".format(e))
-            if(os.path.exists('.Key/key.txt') == False):
+            elif(os.path.exists('/data/data/com.termux/files/home/.shodan/api_key') == False):
                 print ("Chave Não estar adicionada")
                 time.sleep(2)
                 os.system('python3 main.py')
