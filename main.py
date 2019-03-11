@@ -12,17 +12,15 @@ import time
 import subprocess
 
 
-# modulos criados importados
-from cor3.banner import banner
-
-
 def main():
-    banner()
+    os.system('sh cor3/.banner.sh')
     print ("""
------------------------------------------------
-| 1->ADD-KEY | 2->SEARCH | 3->EXIT | 4->SOBRE |
------------------------------------------------
-        """)
+    
+    \t1 -> Adicionar {chave}
+    \t2 -> Buscar IP de sistemas
+    \t3 -> Sair
+    \t4 -> Sobre shodan
+    """)
 
 def msg_search():
     print("\033[01;92mExemplos de coisas a ser buscado aqui, (\033[00;94mWEBCAM\033[01;96m=\033[01;91mwecamxp, \033[00;94msistemas operacionais\033[01;96m=\033[01;91mwindows, \033[00;94mservidores\033[01;96m=\033[01;91mapache2,\033[00;94m etc.\033[0m")
