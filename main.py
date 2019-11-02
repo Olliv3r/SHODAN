@@ -84,13 +84,16 @@ try:
 
 
                     for result in resultado['matches']:
-                        print('-'*30)
-                        print ('\033[01;91mIP: \033[01;94m {}\033[0m'.format(result['ip_str']))
+                        print('\033[00;97m_'*30)
+                        print("")
+                        print ('\033[00;92mIP: \033[00;93m {}\033[0m'.format(result['ip_str']))
                         #print ('\033[91mBanner: \033[01;94m{}\033[0m'.format(result['data']))
-                        print ('\033[01;91mPort: \033[01;94m{}\033[0m'.format(result['port']))
-                        print ('\033[01;91mOrganização: \033[01;94m{}\033[0m'.format(result['org']))
-                        print ('\033[01;91mSistema Operacional: \033[01;94m{}\033[0m'.format (result['os']))
-                        print('-'*30)
+                        print ('\033[00;92mPort: \033[00;93m{}\033[0m'.format(result['port']))
+                        print ('\033[00;92mOrganização: \033[00;93m{}\033[0m'.format(result['org']))
+                        print ('\033[00;92mSistema Operacional: \033[00;93m{}\033[0m'.format (result['os']))
+                        print ('\033[00;92mData: \033[01;94m{}\033[0m'.format (result['data']))
+                        
+                        #print('\033[00;96m_'*30)
 
                 except shodan.APIError as e:
                     print ("Error [!] {}".format(e))
